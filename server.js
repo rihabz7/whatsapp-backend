@@ -28,7 +28,7 @@ app.use(cors())
 // });
 
 //DB config
-const connection_url = "mongodb+srv://admin:UVy9pa0zSl2BpE8R@cluster0.ix2fk.mongodb.net/whatsappDB?retryWrites=true&w=majority";
+const connection_url = "mongodb+srv://admin:nFu6YLWuo35tewes@cluster0.x4ywn.mongodb.net/whatsappDB?retryWrites=true&w=majority";
 
 mongoose.connect(connection_url,{
     useCreateIndex: true,
@@ -54,7 +54,9 @@ changeStream.on("change", (change) => {
     pusher.trigger('messages', 'inserted',
     {
       name: messageDetails.name,
-      message: messageDetails.message
+      message: messageDetails.message,
+      timestamp:messageDetails.timestamp,
+      received:messageDetails.received
     }
     );
   } else {
